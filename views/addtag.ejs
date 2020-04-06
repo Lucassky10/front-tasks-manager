@@ -1,0 +1,60 @@
+<form>
+    <br>
+    <h2>Ajout d'une nouvelle catégorie</h2>
+    <div class="form-group">
+      <label>Nom</label>
+      <input type="text" id="tagName" class="form-control">
+    </div>
+    <button type="submit" id="addTag" class="btn btn-warning">Ajouter</button>
+    <hr>
+    <p id="message"></p>
+  </form>
+
+  <script>
+$(document).ready(function() {
+
+let api = "http://localhost:8090/api/"
+let id = $(location).attr('pathname').split('/')[2];
+let form = {
+    title: $('#taskTitle'),
+    beginDate: $('#taskBeginDate'),
+    endDate: $('#taskEndDate'),
+    status: $('#taskStatus'),
+    tags: $('#taskTags')
+};
+
+
+$("#addTag").click(function (e) {
+    e.preventDefault();
+    let selectedTags = [];
+    $("#message").fadeIn(1000);
+
+    $.each($('#taskTags').children(), function(index, value) {
+        if($(value).prop('selected')) {
+            selectedTags.push($(value).text())  
+        }
+    });
+
+    let newTag = {
+        name: $('#tagName').val()
+    }
+
+    $.ajax({
+      url: api + 'tag/',
+      type: 'POST',
+      data: newTag,
+      success: (result) => {
+        $("#message").addClass('text-success');
+        $("#message").text("La catégorie a été ajoutée.");
+        $("#message").fadeOut(2500);
+      },
+      error: () => {
+        alert("Erreur : La catégorie n'a pas pu être ajoutée");
+      }
+    });
+
+});
+
+});
+
+  </script>
