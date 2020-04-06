@@ -57,7 +57,7 @@
 
             $.get(api + 'tags', (tags) => {
                 $.each(tags, (index, value)=>{
-                    $('#taskTags').append('<option>'+value.name+'</option>')
+                    $('#taskTags').append('<option selected>'+value.name+'</option>')
                 })
             });
 
