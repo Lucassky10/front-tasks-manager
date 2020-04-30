@@ -23,7 +23,7 @@
     "gulp-open": "^3.0.1",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.9.6",
     "node-fetch": "^2.6.0"
   }
